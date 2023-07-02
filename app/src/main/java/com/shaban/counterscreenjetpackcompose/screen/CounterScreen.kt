@@ -44,7 +44,7 @@ private fun CounterContent(
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
 
-        Text(text = counter.toString(), fontSize = 96.sp)
+        Text(text = counter, fontSize = 96.sp)
         Row {
             Button(
                 modifier = Modifier.size(96.dp),
