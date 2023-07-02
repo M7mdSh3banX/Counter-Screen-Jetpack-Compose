@@ -23,18 +23,32 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun CounterScreen() {
+    var counter by remember { mutableStateOf(0) }
+
+    CounterContent(
+        counter = counter.toString(),
+        onClickPlus = { counter++ },
+        onClickMinus = { counter-- }
+    )
+}
+
+@Composable
+private fun CounterContent(
+    counter: String,
+    onClickPlus: () -> Unit,
+    onClickMinus: () -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
-        var counter by remember { mutableStateOf(0) }
 
         Text(text = counter.toString(), fontSize = 96.sp)
         Row {
             Button(
                 modifier = Modifier.size(96.dp),
-                onClick = { counter-- },
+                onClick = onClickMinus,
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Text(text = "-", fontSize = 48.sp)
@@ -42,7 +56,7 @@ fun CounterScreen() {
             Spacer(modifier = Modifier.width(16.dp))
             Button(
                 modifier = Modifier.size(96.dp),
-                onClick = { counter++ },
+                onClick = onClickPlus,
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Text(text = "+", fontSize = 48.sp)
